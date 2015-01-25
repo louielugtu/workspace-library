@@ -16,20 +16,37 @@ myAngularApp.controller('mainController', ['$scope', '$filter', '$log', function
         $log.debug('New Value: '+newValue);
     });
 
-    // Will not change because it runs outside Angular context
     setTimeout(function() {
 
+        // Will not change because it runs outside Angular context because of (setTimeout function). To avoid this use $timeout
         $scope.igname = 'unknown';
         console.log('IGName Changed!');
 
+        // Force AngularJS to start a digest cycle to update the page.
+        $scope.$apply(function() {
+            $scope.igname = 'unknown';
+            console.log('IGName Changed inside $apply!');
+        });
+
     }, 3000);
+
+    // Sample use of $timeout
+    //$timeout(function() {
+    //    $scope.igname = 'unknown';
+    //    console.log('IGName Changed inside $apply!');
+    //}, 3000);
+
 }]);
 
 /**
  * Events: Click, KeyPress, MouseOver, Change
  *
- * Everytime you put values to the scope, Angular automatically creates a WATCHER inside the WATCHER LIST.
+ * Every time you put values to the scope, Angular automatically creates a WATCHER inside the WATCHER LIST.
  * This tracks the changes (OLD VALUE and NEW VALUE) to that value added in the scope. It happens inside
  * the digest cycle. The digest loop updates everything that has changed.
+ *
+ * $scope.$watch - Adding functionality in WATCHERS
+ *
+ * $scope.$apply - Force to create a digest. test.
  *
  */
