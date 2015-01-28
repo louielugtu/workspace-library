@@ -13,13 +13,19 @@ myAngularApp.controller('mainController', ['$scope', '$filter', '$log', function
 
     $scope.characters = 5;
 
+    // Native JS AJAX call using XMLHttpRequest
     var rulesrequest = new XMLHttpRequest();
-    rulerequest.onreadystatechange = function() {
-        if (rulesrequest.readyState == 4 && rulesrequest.status == 200) {
-            rulesrequest.responseText;
-            $scope.rules = JSON.parse
-        }
+    rulesrequest.onreadystatechange = function() {
+        $scope.$apply(function() {
+            if (rulesrequest.readyState == 4 && rulesrequest.status == 200) {
+                rulesrequest.responseText;
+                $scope.rules = JSON.parse(rulesrequest.responseText);
+            }
+        });
     }
+
+    rulesrequest.open("GET", "response.html", true);
+    rulesrequest.send();
 
 }]);
 
