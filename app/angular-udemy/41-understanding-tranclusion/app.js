@@ -1,5 +1,7 @@
 /**
  * Created by louie.lugtu on 2/01/2015.
+ *
+ * Tranclusion - include one document inside another.
  */
 var myAngularApp = angular.module('myAngularApp', ['ngRoute']);
 
@@ -77,15 +79,7 @@ myAngularApp.directive('searchResult', function() {
             formattedAddress: '&'
         },
         replace: true, //Default is false
-        // Shorthand from compile. We normally use this.
-        link: function(scope, elements, attributes) {
-            console.log('Linking...');
-            // You can now add logic in using the directives (you can do redirection)
-            if (scope.personObject.name == 'Louie') {
-                elements.removeAttr('class');
-            }
-            console.log(elements);
-        }
+        transclude: true //Default is false
     }
 });
 

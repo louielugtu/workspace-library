@@ -1,0 +1,41 @@
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Weather Forecast : {{ city }}</div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Humidity</th>
+            <th>Weather</th>
+            <th>Windspeed (mps)</th>
+            <th>Daytime Temperature (C)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="forecast in forecasts.list">
+            <td>{{ formatDate(forecast.dt) | date:'yyyy-MM-dd'}}</td>
+            <td>{{ forecast.humidity }}%</td>
+            <td>{{ forecast.weather[0].description }}</td>
+            <td>{{ forecast.speed }}</td>
+            <td>{{ convertToCelsius(forecast.temp.day) }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<hr/>
+Days: <a href="#/forecast/{{ city }}/2" ng-class="{ 'bg-primary' : day === '2' }">2</a> |
+<a href="#/forecast/{{ city }}/5" ng-class="{ 'bg-primary' : day === '5' }">5</a> |
+<a href="#/forecast/{{ city }}/7" ng-class="{ 'bg-primary' : day === '7' }">7</a> |
+<a href="#/forecast/{{ city }}/12" ng-class="{ 'bg-primary' : day === '12' }">12</a>
+<hr/>
+
+<forecast forecast="forecast"
+          convert-temperature="convertToCelsius(dayTimeTemp)"
+          convert-to-date="formatDate(dt)"
+          date-format="yyyy-MM-dd"
+          ng-repeat="forecast in forecasts.list">
+
+</forecast>
+
+

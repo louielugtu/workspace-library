@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h4>Weather Forecast by City</h4>
+
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="city" placeholder="&nbsp;Enter City Name">
+            <span class="input-group-btn">
+                <a href="#/forecast/{{city}}" class="btn btn-default" ng-click="lookupForecast()">Lookup</a>
+            </span>
+            </div>
+        </div>
+        <!--<a href="#/forecast/{{city}}" class="btn btn-primary" ng-click="lookupForecast()">Lookup</a>-->
+    </div>
+</div>
