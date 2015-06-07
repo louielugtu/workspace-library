@@ -12,7 +12,7 @@ patientApp.controller('loginControllerModal', ['$scope', '$modal', '$log', funct
 
     $scope.open = function (size) {
         var modalInstance = $modal.open({
-            templateUrl: 'login.html',
+            templateUrl: 'login/login.html',
             controller: 'loginController',
             size: size,
             backdrop: 'static',
@@ -64,3 +64,20 @@ patientApp.service('loginService', ['$resource', '$log', function($resource, $lo
         return true;
     }
 }]);
+
+/**
+ * Created by Louie on 2/1/2015.
+ */
+patientApp.directive('login', function() {
+    return {
+        restrict: 'E', //A-attribute, E-element, C-class, M-Comment
+        templateUrl: 'login/login.html',
+        replace: true, //Default is false
+        scope: {
+            forecast: "=",
+            convertTemperature: "&",
+            convertToDate: "&",
+            dateFormat: "@"
+        }
+    }
+});
